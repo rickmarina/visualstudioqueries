@@ -1,0 +1,15 @@
+/* Altas web FIDELIZACION */
+
+select  case left(tcf41.cl_tarjeta,6) when '972400' then 'Tu Club DISA' when '700421' then 'ClubSmart' end as TipoTarjeta, 
+        cl_Centro_hab as centrohab, 
+        (select top 1 cod_establ from EstacionesClubSmart_ACTIVAS where cl_centro = cl_centro_hab) as codeess, 
+        (select top 1 descripcion from EstacionesClubSmart_ACTIVAS where cl_centro = cl_centro_hab) as estacion, 
+        count(*) as numTarjetasAlta 
+from tcf40  
+        inner join tcf41 on tcf40.cl_cliente = tcf41.cl_cliente 
+        inner join tcf93 on tcf93.cl_cliente = tcf40.cl_cliente 
+where  (tcf93.observaciones like '%web%' or motivo like '%web%') 
+AND (tcf93.fecha  >= '" + fechaI + "') AND (tcf93.fecha  <= '" + fechaF + "') 
+--fitlrar por tipo de tarjeta tcf41
+group by left(tcf41.cl_tarjeta,6),cl_centro_hab 
+order by cl_Centro_hab
