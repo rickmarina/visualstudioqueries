@@ -1,3 +1,31 @@
+/* Regularizaciones mensuales - actualizado 20160728 */
+declare @fecha as nvarchar(6)
+
+set @fecha = '201606'
+
+select isnull(TCF93.CL_EMPRESA,'-') AS COD_EMPRESA_CF, 
+		isnull(TCF93.CL_CENTRO,'-') AS COD_CENTRO_CF, 
+		isnull((select top 1 cod_establ from estacionesclubsmart where tcf93.CL_EMPRESA = EstacionesClubSmart.CL_EMPRESA and tcf93.CL_CENTRO = EstacionesClubSmart.CL_CENTRO),'-') as cod_eess,
+		isnull((select top 1 DESCRIPCION from estacionesclubsmart where tcf93.CL_EMPRESA = EstacionesClubSmart.CL_EMPRESA and tcf93.CL_CENTRO = EstacionesClubSmart.CL_CENTRO),'-') AS NOMBRE_EESS, 
+		case 
+			when  tcf93.observaciones in ('Regalo 200 puntos por recomendar a amigo','Regalo 50 puntos por modificar datos de la tarjeta','Regalo 50 puntos por registro de tarjeta') 
+			then tcf93.observaciones else tcf93.motivo 
+		end as motivo,
+		COUNT(TCF93.ID_MOV) AS NUM_TRANSACC, 
+		SUM(PUNTOS) AS TOTAL_PUNTOS 
+FROM tcf93 
+where (LEFT(TCF93.FECHA, 6) = @fecha) 
+GROUP BY TCF93.CL_EMPRESA, TCF93.CL_CENTRO, 
+case 
+when  tcf93.observaciones in ('Regalo 200 puntos por recomendar a amigo','Regalo 50 puntos por modificar datos de la tarjeta','Regalo 50 puntos por registro de tarjeta') 
+then tcf93.observaciones else tcf93.motivo end
+order by 4
+
+
+
+
+
+
 /* Regularizaciones mensuales */
 declare @fecha as nvarchar(6)
 

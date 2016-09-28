@@ -22,3 +22,27 @@ where nif = 'B64356579' and cim = '08ES0ITZ' and fecha >= '201510'
 insert into [dbo].[SuministrosNoEnviados] ([FK_RegistroComunicaciones_Id],[IdMovCont],[CIM],[C_VENTA],[Fecha],[Hora],[CodProd],[Lit],[NIF],[Matricula])
 select [FK_RegistroComunicaciones_Id], [IdMovCont], [CIM], [C_VENTA], [Fecha],[Hora],[CodProd], [Lit],[NIF],[Matricula]
 from [dbo].[ZZZ_Arreglo_B64356579_CIMErroneo]
+
+--origen de transacciones
+select *
+ from suministrosenviados
+where nif = 'B98605876' 
+and fecha >= '20150101'
+and c_venta = 2254
+-- 1. Tenemos que enviar estas mismas, con identificador distinto (R1-IDMOVCONT) e importe negativo. 
+-- (195 registros)
+insert into [dbo].[ZZZ_Arreglo_B98605876_CIMErroneo] (FK_RegistroComunicaciones_Id,idmovcont, cim, fecha, hora, codprod, lit, nif, matricula, codigoerror, descripcionerror, c_venta)
+select FK_RegistroComunicaciones_Id, 'R1-'+idmovcont, cim, fecha, hora, CodProd, -1 * cast(lit as decimal(6,2)) , nif, matricula, codigoerror, descripcionerror, c_venta
+from suministrosenviados
+where nif = 'B98605876' and fecha >= '20150101' and c_venta = 2254
+-- 2. 2. Tenemos que enviar estas mismas con identificador distinto (R2-IDMOVCONT) e importe igual (en positivo). CIM NUEVO 46ES0TES
+insert into [dbo].[ZZZ_Arreglo_B98605876_CIMErroneo] (FK_RegistroComunicaciones_Id,idmovcont, cim, fecha, hora, codprod, lit, nif, matricula, codigoerror, descripcionerror, c_venta)
+select FK_RegistroComunicaciones_Id, 'R2-'+idmovcont, '46ES0TES', fecha, hora, CodProd, lit , nif, matricula, codigoerror, descripcionerror, c_venta
+from suministrosenviados
+where nif = 'B98605876' and fecha >= '20150101' and c_venta = 2254
+
+
+-- pasar las transacciones de la tabla temporal a SuministrosNoEnviados
+insert into [dbo].[SuministrosNoEnviados] ([FK_RegistroComunicaciones_Id],[IdMovCont],[CIM],[C_VENTA],[Fecha],[Hora],[CodProd],[Lit],[NIF],[Matricula])
+select [FK_RegistroComunicaciones_Id], [IdMovCont], [CIM], [C_VENTA], [Fecha],[Hora],[CodProd], [Lit],[NIF],[Matricula]
+from [dbo].[ZZZ_Arreglo_B98605876_CIMErroneo]
