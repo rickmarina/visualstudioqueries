@@ -1,0 +1,23 @@
+ps_stores
+
+
+40.4167754
+-3.7037901999999576
+
+
+select * from ps_store
+
+select rand();
+
+update ps_store 
+set latitude = 40.4167754 + rand(),
+    longitude = -3.7037901999999576 + rand();
+
+https://maps.google.com/maps?ll=40.307568,-3.729291&z=16
+
+https://maps.google.com/maps?ll=40.307568,-3.729291&z=16&t=m&hl=es-ES&gl=US&mapclient=embed
+
+https://maps.google.com/maps?ll=40.307568,-3.729291&z=16&t=m&hl=es-ES&gl=US&mapclient=embed&q=40.307568,-3.729291
+
+
+https://maps.google.com/maps?ll=40.426942,-3.684165&z=16&t=m&hl=es-ES&gl=US&mapclient=embed&daddr=Amichi@40.426942,-3.6841651

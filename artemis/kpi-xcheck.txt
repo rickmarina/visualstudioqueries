@@ -1,0 +1,44 @@
+admin - istobal españa, slu
+26-28 oct 2016
+
+2016-10-28 10:21:39,655 [INFO] com.disa.reports.logic.InformeKPILogic calculoKPI4Contratista 
+numeroIncidenciasReparadasEnTiempo [3] numeroIncidenciasTotales [3] numeroIncidenciasFueraPlazo [62] 
+
+A: 99,47
+A: 99,47
+
+Servicios (100%)
+TMF minutos = 31 917 400
+horario apertura: shp.-tienda
+
+-------------------------------------------------------------------
+
+istobal.kpi
+26-18 oct 2016
+
+2016-10-28 10:35:18,173 [INFO] com.disa.reports.logic.InformeKPILogic calculoKPI4Contratista 
+numeroIncidenciasReparadasEnTiempo [3] numeroIncidenciasTotales [3] numeroIncidenciasFueraPlazo [60] 
+
+Servicios: 100%
+TMF Minutos = 22 766 400
+horario apertura: car - carwash 
+
+	private static String[] obtenerHorarioApertura(InformeKpiVO informeKpi, Connection connection) throws LogicException {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String horarioAperturaNombre = "FUE";
+		String horarioAperturaDescripcion = "";
+				
+		try {
+			StringBuffer queryTipoHorario = new StringBuffer();
+			queryTipoHorario.append("select top 1 horariosapertura.Nombre      as tipo, ");
+			queryTipoHorario.append("             horariosapertura.descripcion as descripcion ");
+			queryTipoHorario.append("from horariosapertura ");
+			queryTipoHorario.append("     inner join contratosadhoc on horariosapertura.pk_codigo=contratosadhoc.FK_HorariosApertura_PK_Codigo ");
+			queryTipoHorario.append("where 1=1 ");
+			if (!StringUtils.isEmpty(informeKpi.getCampo3())) { 
+				queryTipoHorario.append(" and contratosadhoc.pk_codigo="+informeKpi.getCampo3()+" ");
+			}
+			if (!StringUtils.isEmpty(informeKpi.getContratosAdhoc4Usuario())) {
+				queryTipoHorario.append(" and contratosadhoc.pk_codigo in (" + informeKpi.getContratosAdhoc4Usuario()+") ");
+			}
