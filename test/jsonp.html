@@ -1,0 +1,65 @@
+
+<!--
+    The server will need to be set up to return a mini script looking something 
+    like "processJSONPResponse({"room":"main bedroom","items":["bed","chest of drawers"]});" 
+    It might be designed to return such a string if something like //api.home.com?getdata=room&room=main_bedroom is called.
+
+    Then the client sets up a script tag as such:
+
+    var script = document.createElement('script');
+    script.src = '//api.home.com?getdata=room&room=main_bedroom';
+
+    document.querySelector('head').appendChild(script);
+    This loads the script and immediately calls window.processJSONPResponse() as written/ echo/ printed out by the server. 
+    The data passed in as the parameter to the function is now stored in the dataFromServer local variable and you can do 
+    with it whatever you need.
+
+    Clean up
+
+    Once the client has the data, ie. immediately after the script is added to the DOM, the script element can be removed 
+    from the DOM:
+
+    script.parentNode.removeChild(script);
+
+-->
+<html>
+
+<head>
+    <script>
+        function processJSONPResponse(data) {
+            var datosServer = data;
+            alert(data);
+            //script.parentNode.removeChild(script);
+        }
+
+        function clickLike(u,n) {
+            alert('clicked');
+            var script = document.createElement('script');
+            script.src = 'http://188.164.192.103/popnews/jsonp.ashx?u='+u+'&n='+n;
+
+            document.querySelector('head').appendChild(script);
+        }
+
+        function clickUnlike() {
+
+        }
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+Texto de ejemplo
+
+<div id="not1">
+    <img width="24" src="http://icons.iconarchive.com/icons/iconsmind/outline/128/Like-icon.png" onclick="clickLike(1234,1);"/>
+</div>
+
+
+</body>
+
+
+</html>

@@ -1,16 +1,12 @@
-/* Script Daemon Quest */
-
-/*
-
-Periodo de extracción: Del 1 de octubre de 2014 al 31 de octubre de 2016
-Sacamos tabla clientes que hayan tenido activa alguna tarjeta de TCD. 
-Sacamos el transaccional filtrado por tarjetas TCD últimos 24 meses.
-En cuanto a la tabla de desglose de puntos, ya que no filtra por tarjeta ni cliente,
-deberíamos sacar los dos últimos años directamente.
-
+/* Script Daemon Quest 
+      Periodo de extracción: Del 1 de octubre de 2014 al 31 de octubre de 2016
+      Sacamos tabla clientes que hayan tenido activa alguna tarjeta de TCD. 
+      Sacamos el transaccional filtrado por tarjetas TCD últimos 24 meses.
+      En cuanto a la tabla de desglose de puntos, ya que no filtra por tarjeta ni cliente,
+      deberíamos sacar los dos últimos años directamente.
 */
 
---clientes
+--clientes (aprox 94k)
 select *
 from tcf40 
 where cl_cliente in (
@@ -20,33 +16,10 @@ and nombre_usu <> 'DATOS NO CARGADOS'
 )
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- transacciones cabecera TCD
 select * from tcf14fi 
 where left(cl_tarjeta,9) = '972400077'
-and tcf14fi.fecha >= '20141001' and tcf14fi.fecha <= '20161031'
+and tcf14fi.fecha >= '20141001' and tcf14fi.fecha <= '20161031' and E_OPERACION = 'R'
 union
 select 
 [CL_EMPRESA]      ,[C_VENTA]      ,[P_VENTA]      ,[N_VENTA]      ,[CL_OPERADOR]      ,[T_OPERACION]
@@ -61,7 +34,7 @@ select
       ,[VALE_DESCUENTO]      ,[PROMOCION]      ,[PUNTOS_PROMO]      ,[ID_CUENTA_RECEP]
 from cf_disa_hist.dbo.tcf16fi_h
 where left(cl_tarjeta,9) = '972400077'
-and cf_disa_hist.dbo.tcf16fi_h.fecha >= '20141001' and cf_disa_hist.dbo.tcf16fi_h.fecha <= '20161031'
+and cf_disa_hist.dbo.tcf16fi_h.fecha >= '20141001' and cf_disa_hist.dbo.tcf16fi_h.fecha <= '20161031' and E_OPERACION = 'R'
 
 
 --transacciones desglose de puntos 
@@ -72,9 +45,10 @@ select * from cf_disa_hist.dbo.tcf67_h
 where cf_disa_hist.dbo.tcf67_h.fecha >= '20141001' and cf_disa_hist.dbo.tcf67_h.fecha <= '20161031'
 
 
+--Script Daemon Quest BCP 20161128 
 
---script Daemon Quest BCP 20161128 
+sqlcmd -d CF_DISA -Q "SELECT * FROM VW_DQ_Clientes" -S SIECISAPRO01 -U US_CF_GYT -P Gytki01 -f 65001 -s"$&_&$" -W -o ".\clientes.dat"
+sqlcmd -d CF_DISA -Q "SELECT * FROM VW_DQ_TransaccionesFI" -S SIECISAPRO01 -U US_CF_GYT -P Gytki01 -f 65001 -s"$&_&$" -W -o ".\transacciones.dat"
+sqlcmd -d CF_DISA -Q "SELECT * FROM VW_DQ_Transacciones_Desglose" -S SIECISAPRO01 -U US_CF_GYT -P Gytki01 -f 65001 -s"$&_&$" -W -o ".\transacciones_desglose.dat"
 
-sqlcmd -d CF_DISA -Q "SELECT * FROM VW_DQ_Clientes" -U UL_CF_DISA -P DISAConex -f 65001 -s"$&_&$" -W -o ".\clientes.dat"
-sqlcmd -d CF_DISA -Q "SELECT * FROM VW_DQ_TransaccionesFI" -U UL_CF_DISA -P DISAConex -f 65001 -s"$&_&$" -W -o ".\transacciones.dat"
-sqlcmd -d CF_DISA -Q "SELECT * FROM VW_DQ_Transacciones_Desglose" -U UL_CF_DISA -P DISAConex -f 65001 -s"$&_&$" -W -o ".\transacciones_desglose.dat"
+pause
