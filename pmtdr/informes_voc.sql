@@ -9,6 +9,7 @@ from TuOpinionImportaEnviosClientes
 group by cast(fechaenvio as date)
 order by 1 desc
 
+
 select top 50 cast(FechaEnvio as date) as fecha,
 count(*) as total,
 SUM(case when estado='ENVIADO' THEN 1 else 0 end) as correctos,
@@ -19,6 +20,7 @@ from TuOpinionImportaEnviosClientes
     left join plataformasestaciones on estaciones.fk_plataformasEstaciones_pkCodigo=plataformasestaciones.pkcodigo 
 group by cast(fechaenvio as date), plataformasestaciones.nombre   
 order by 1 desc, plataformasestaciones.nombre          
+
 
 
 select TuOpinionImportaEnviosClientes.*,        plataformasestaciones.nombre as plataformanombre,        
