@@ -1,1 +1,23 @@
 9724000513074710011
+2000007471
+
+42214181G
+
+9724000513074710011
+
+nuevo:
+trx de tarjetas:
+    Junto a la tarjeta mostraremos el saldo de descuento acumulado.
+    Exportación excel saldo.
+
+búsqueda de tarjetas:
+    listado html, incluir saldo.
+
+cliente operaciones:
+    mostrar saldo tarjeta.
+
+tarjetas activas/bloquedas
+    mostrar saldo tarjeta.
+
+ocupación limites: 
+    mostrar saldo tarjeta.

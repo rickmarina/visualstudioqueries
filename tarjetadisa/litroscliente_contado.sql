@@ -22,6 +22,10 @@ where movimiento_mov.top_val in ('B','DB') and mov_anulado=0
 --AND  (movimiento_mov.mov_fecha >= '20161201 00:00:00'
 --AND (movimiento_mov.mov_fecha <= '20161231 23:59:59') 
 
+query.append(" and  (to_char(movimiento_detalle_mde.mov_fecha,'YYYYMMDD') >= '" + fechaI + "') ");
+query.append(" and  (to_char(movimiento_detalle_mde.mov_fecha,'YYYYMMDD') <= '" + fechaF + "') ");
+
+
 GROUP BY producto_pro.pro_id_ext, productos_bandera_pba.prg_descripcion, colectivo_col.col_nemo, colectivo_col.col_descripcion 
 ORDER BY producto_pro.pro_id_ext, colectivo_col.col_nemo
 

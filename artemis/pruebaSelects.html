@@ -1,0 +1,145 @@
+
+<html>
+    <head>
+        <title>Pruebas</title>
+    </head>
+<body>
+<script>
+    var selectActivo = null;
+
+    function seleccionarTiposEquipos() {
+        document.getElementById("tiposequiposorigen").focus();
+        selectActivo = "tiposequiposorigen";
+    }
+
+    function moverAbajoElementoFoco() {
+        var elemento = document.getElementById(selectActivo);
+        var index = elemento.selectedIndex;
+
+        index++;
+        elemento.selectedIndex=index;
+        elemento.focus();
+    }
+
+    function moverArribaElementoFoco() {
+        var elemento = document.getElementById(selectActivo);
+        var index = elemento.selectedIndex;
+        index--;
+        if (index <= -1) {
+            elemento.selectedIndex=elemento.length-1;
+        }
+        else {
+            elemento.selectedIndex=index;
+        }
+        elemento.focus();
+    }
+
+     function moverAbajoAbajoElementoFoco() {
+        var elemento = document.getElementById(selectActivo);
+        var index = elemento.selectedIndex;
+
+        index+=elemento.size;
+        if (index > elemento.length) index=elemento.length-1;
+
+        elemento.selectedIndex=index;
+        elemento.focus();
+    }
+
+    function moverArribaArribaElementoFoco() {
+        var elemento = document.getElementById(selectActivo);
+        var index = elemento.selectedIndex;
+        index-=elemento.size;
+        if (index < 0) {
+            elemento.selectedIndex=0;
+        }
+        else {
+            elemento.selectedIndex=index;
+        }
+        elemento.focus();
+    }
+</script>
+
+<input type="button" value="tiposequipos" onclick="seleccionarTiposEquipos();"/>
+
+<select name="tiposequiposorigen" size="20"  id="tiposequiposorigen">
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>  
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+    <option value="1">opcion tipo de equipo 1</option>
+</select>
+
+<img src="http://freeiconbox.com/icon/256/7607.png" onclick="moverArribaElementoFoco();" style="width:45px;height:45px;"/>
+<img src="http://www.uidownload.com/files/862/974/423/arrows-double-arrow-doublechevronup-up-arrows-icon.png"
+onclick="moverArribaArribaElementoFoco();" style="width:45px;;height:45px;"/>
+<img src="http://skyscrapercenter.com/img/chevron-down.png" onclick="moverAbajoElementoFoco();" style="width:45px;;height:45px;"/>
+<img src="https://cdn0.iconfinder.com/data/icons/glyphpack/26/double-arrow-down-128.png"
+onclick="moverAbajoAbajoElementoFoco();" style="width:45px;;height:45px;"/>
+
+</body>
+</html>
