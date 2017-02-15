@@ -4,15 +4,17 @@ InformeConsumosClientes:
     - Filtro fechas movimiento detalle
 
 Informe Consumos Colectivos Detalle:
-    - Revisar formato fechas
-    - Posible mejora
+    - Revisar formato fechas ok
+    - Posible mejora ok
 
 Informe Consumos Colectivos:
-    - Revisar formato fechas
+    - Revisar formato fechas ok
+    - Posible mejora ok 
 
 Informe Consumos Estaciones: 
     - Tiene el filtro de fechas mov. detalle 
     - Parece correcto
+    - Consulta compleja, revisar más adelante !
 
 Informe evolución clientes: 
     - vistas materializadas:
@@ -21,21 +23,22 @@ Informe evolución clientes:
         - contado empresas: mv_gyt_cliente_contado
 
 Informe evolución estaciones: 
-    - Falta filtrar por movimiento detalle (3 queries)
+    - Falta filtrar por movimiento detalle (3 queries) ok
+    - Mejoría sensible al modificar la consulta. 
 
-Informe litros de clientes: 
-    - Vistas materializadas:
-        - vw_gyt_clientes_operaciones_credito
-        - vw_gyt_clientes_operaciones_contado
-        - vw_gyt_clientes_operaciones_contado_empresa
+Informe litros de clientes:  
+    - Vistas materializadas: 
+        - vw_gyt_clientes_operaciones_credito 
+        - vw_gyt_clientes_operaciones_contado 
+        - vw_gyt_clientes_operaciones_contado_empresa 
 
-Informe movimientos clubdia:
-    - Vistas materializadas:
+Informe movimientos clubdia: 
+    - Vistas materializadas: 
         - movimientos_clubdia
 
 Informe cliente operaciones: 
     - Consulta enviada para materializar
-    - Falta filtrar por periodo en el detalle de movimiento consulta limites
+    - Falta filtrar por periodo en el detalle de movimiento consulta limites ok
 
 Informe control de consumos:
     - Verificar formato de fecha, aplicar to_char
@@ -57,3 +60,4 @@ Informes tarjetas activas:
 Informe tarjetas activas:
     - Parece correcto.
 
+OPTIMIZACION DE PRODUCTOS Y PRODUCTOS BANDERA, para tener en la misma tabla cod_producto_ext , bandera y descripción

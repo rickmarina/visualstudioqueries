@@ -11,13 +11,14 @@ from movimiento_mov
      inner join producto_pro on producto_pro.pro_id_ext=movimiento_detalle_mde.pro_id_ext 
      inner join cliente_cli on cliente_cli.cli_id_ext=movimiento_mov.cli_id_ext 
      INNER JOIN comercio_com           ON comercio_com.com_id_ext=movimiento_mov.com_id_ext 
-     INNER JOIN productos_bandera_pba ON productos_bandera_pba.pro_id = producto_pro.pro_id and productos_bandera_pba.bnd_code = comercio_com.bnd_code 
+     INNER JOIN productos_bandera_pba ON productos_bandera_pba.pro_id = producto_pro.pro_id 
+     and productos_bandera_pba.bnd_code = comercio_com.bnd_code 
      left join colectivo_col on cliente_cli.col_id=colectivo_col.col_id 
 where movimiento_mov.top_val in ('B','DB') and mov_anulado=0 
       AND left(movimiento_mov.mov_pan,3) = '772' 
       and LEFT(right(comercio_com.com_id_ext,4), 1) IN ('1', '4') 
-      and movimiento_mov.mov_fecha Between '2016-12-01'::date and '2016-12-31'::date
-      and movimiento_detalle_mde.mov_fecha Between '2016-12-01'::date and '2016-12-31'::date
+      and movimiento_mov.mov_fecha Between '2016-12-01'::date and '2016-12-31'::date 
+      and movimiento_detalle_mde.mov_fecha Between '2016-12-01'::date and '2016-12-31'::date 
 
 --AND  (movimiento_mov.mov_fecha >= '20161201 00:00:00'
 --AND (movimiento_mov.mov_fecha <= '20161231 23:59:59') 

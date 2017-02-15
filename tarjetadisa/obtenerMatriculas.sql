@@ -14,3 +14,14 @@ and (movimiento_mov.mov_fecha BETWEEN '1-1-2017' and '31-1-2017')
 --and (movimiento_detalle_mde.mov_fecha BETWEEN '1-1-2017' and '31-1-2017')       
 and cliente_cli.cli_id_ext IN   ('4000001002')  
 order by tarjeta_crd.crd_matricula  
+
+
+queryIngenico.append("SELECT distinct tarjeta_crd.crd_matricula                    AS MATRICULA  ");
+queryIngenico.append("FROM movimiento_mov         ");
+queryIngenico.append("INNER JOIN cliente_cli            ON cliente_cli.cli_id_ext=movimiento_mov.cli_id_ext        ");
+queryIngenico.append("INNER JOIN tarjeta_crd            ON tarjeta_crd.crd_pan=movimiento_mov.mov_pan        ");
+queryIngenico.append("where movimiento_mov.top_val IN ('V','D')        ");
+queryIngenico.append("and mov_anulado=0        ");
+queryIngenico.append("and (movimiento_mov.mov_fecha BETWEEN '1-1-2017' and '31-1-2017')        ");
+queryIngenico.append("and cliente_cli.cli_id_ext IN   ('4000001002')   ");
+queryIngenico.append("order by tarjeta_crd.crd_matricula   ");

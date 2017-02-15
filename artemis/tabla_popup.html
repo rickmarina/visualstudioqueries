@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title>prueba formulario popup</title>
+</head>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="./popup.js"></script>
+    
+
+<body>
+    <div id="dialog-estacion-form" title="Modificar datos">
+        <p class="validateTips"></p>
+        <input type="text" id="estacionpk" value="" />
+        <fieldset>
+            <label for="nombreEstacion">Estacion</label>
+            <input type="text" name="nombreEstacion" id="nombreEstacion" value="" class="text ui-widget-content ui-corner-all">
+        </fieldset>
+    </div>
+
+
+    
+    <table border="1">
+        <tr>
+            <td>1</td>
+            <td>nombre estacion</td>
+            <td>
+                <input type="button" id="modificardatos" value="click" onclick="abrirDialogoEstacion(1);"></input>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
