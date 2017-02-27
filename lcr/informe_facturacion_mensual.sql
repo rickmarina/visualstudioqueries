@@ -9,3 +9,4 @@ inner join v2distribuidores on v2distribuidores.pkCodigo = v2pago_comisiones.fkD
 where v2pago_comisiones.mes=12 and v2pago_comisiones.anyo=2016
 and v2distribuidores.codigo = '275706'
 group by v2distribuidores.codigo, v2distribuidores.distribuidor,v2pago_comisiones.mes, v2pago_comisiones.anyo 
+
