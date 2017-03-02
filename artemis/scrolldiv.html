@@ -1,0 +1,127 @@
+
+<html>
+    <head>
+        <!-- styles needed by jScrollPane -->
+        <link type="text/css" href="./jquery.jscrollpane.css" rel="stylesheet" media="all" />     
+        <!-- latest jQuery direct from google's CDN -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+        </script>    
+        <!-- the jScrollPane script -->
+        <script type="text/javascript" src="./jquery.jscrollpane.min.js"></script>  
+
+        <style>
+            .ninja {
+                visibility:hidden;
+                height: 0px;
+                width: 0px;
+                padding: 0;
+                overflow: hidden;
+                opacity: 0;
+            }
+            #seleccionarTipoEquipo input[type="button"] {
+                display: block;
+                width: 100%;
+                margin-bottom: 1px;
+                height: 3em;
+            }
+
+            #seleccionarTipoEquipo {
+                height:140px;
+                overflow: auto;
+            }
+        </style>
+
+        <script>
+            $(function()
+            {
+                $('.scroll-pane').jScrollPane();
+            });
+        </script>
+    </head>
+    <body style="margin-top: 200px;">
+        <form>
+            <h2>Seleccionar tipo de equipo</h2>
+<select name="fkCatalogoTipoEquipoPkCodigoOrigen" size="1" onchange="" id="fkCatalogoTipoEquipoPkCodigoOrigen" style="width:830px;font-size:190%;pointer-events: none;">
+<option value=""></option>
+<option value="71">Aire / Agua........................................................................</option>
+<option value="47">Altavoz exterior o interior (megafonía)............................................</option>
+<option value="46">Amplificador (megafonía)...........................................................</option>
+<option value="11">Arcón..............................................................................</option>
+<option value="87">Aspirador..........................................................................</option>
+<option value="120">Caja Fuerte........................................................................</option>
+<option value="42">Central de intrusión...............................................................</option>
+<option value="28">Central incendios..................................................................</option>
+<option value="89">Compresor..........................................................................</option>
+<option value="65">Consola de la sonda................................................................</option>
+<option value="36">Contacto magnético (intrusión).....................................................</option>
+<option value="12">Cámara interior o exterior.........................................................</option>
+<option value="37">Detector pasivo(intrusión).........................................................</option>
+<option value="38">Detector rotura cristal(intrusión).................................................</option>
+<option value="1">Emergencias- Electricidad o Agua...................................................</option>
+<option value="117">Equipo Informático.................................................................</option>
+<option value="39">Foco sorpresivo(intrusión).........................................................</option>
+<option value="40">GSM(intrusión).....................................................................</option>
+<option value="14">Grabador de imágenes cámara........................................................</option>
+<option value="8">H24................................................................................</option>
+<option value="29">Iónico (sistema seguridad incendios)...............................................</option>
+<option value="80">Jetwash (centro de lavado).........................................................</option>
+<option value="49">Micrófono (megafonía)..............................................................</option>
+<option value="15">Monitor interior de seguridad......................................................</option>
+<option value="130">Máquina de Café Jamaica............................................................</option>
+<option value="122">Máquina de tabaco..................................................................</option>
+<option value="10">Pantalla de publicidad (Canal Power TV)............................................</option>
+<option value="52">Pedidos H24........................................................................</option>
+<option value="53">Pedidos Istobal....................................................................</option>
+<option value="51">Pedidos Koppens....................................................................</option>
+<option value="633">Programa Gestión Estaciones de Servicio............................................</option>
+<option value="85">Puente de lavado...................................................................</option>
+<option value="41">Pulsador de atraco(intrusión)......................................................</option>
+<option value="31">Pulsador de incendio...............................................................</option>
+<option value="75">Recicladora de agua................................................................</option>
+<option value="22">SAI................................................................................</option>
+<option value="50">Selector canales (megafonía).......................................................</option>
+<option value="43">Sirena exterior o interior de intrusión............................................</option>
+<option value="33">Sirena interior o exterior de incendios............................................</option>
+<option value="67">Sistema de deteccion de fugas......................................................</option>
+<option value="119">Sistema de niebla(intrusión).......................................................</option>
+<option value="20">Surtidor...........................................................................</option>
+<option value="45">Sísmico(intrusión).................................................................</option>
+<option value="69">Tanque.............................................................................</option>
+<option value="118">Teclado de Intrusión...............................................................</option>
+<option value="9">Terminal Disa......................................................................</option>
+<option value="35">Térmico (sistema seguridad incendios)..............................................</option>
+<option value="16">Óptica.............................................................................</option>
+<option value="30">Ópticos (sistema seguridad incendios)..............................................</option></select>
+<input type="button" value="seleccionar" onclick="mostrarSeleccionTipoEquipo()"/>
+<script>
+
+    function mostrarSeleccionTipoEquipo() {
+        $('#seleccionarTipoEquipo').removeClass('ninja');
+    }
+    function clickTipoEquipo(num) {
+        $("#fkCatalogoTipoEquipoPkCodigoOrigen").val(num).change();
+        $('#seleccionarTipoEquipo').addClass('ninja');
+    }
+</script>
+<div id="seleccionarTipoEquipo" class="scroll-pane ninja" style="width:100%; height: 170px;">
+<input type="button" value="-" onclick="clickTipoEquipo('');"/>
+<input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
+<input type="button" value="Óptica" onclick="clickTipoEquipo(16);"/>
+<input type="button" value="Ópticos (sistema seguridad incendios)"/>
+<input type="button" value="Aire / Agua"/>
+<input type="button" value="Aire / Agua"/>
+<input type="button" value="Ópticos (sistema seguridad incendios)"/>
+<input type="button" value="Aire / Agua"/>
+<input type="button" value="Aire / Agua"/>
+<input type="button" value="Ópticos (sistema seguridad incendios)"/>
+<input type="button" value="Aire / Agua"/>
+<input type="button" value="Aire / Agua"/>
+<input type="button" value="Ópticos (sistema seguridad incendios)"/>
+<input type="button" value="Aire / Agua"/>
+<input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
+</div>
+    </form>
+    </body>
+</html>
+
+
