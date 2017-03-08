@@ -1,15 +1,16 @@
-
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>FUELPOS - FOR DEMO PURPOSES ONLY</title>
         <!-- styles needed by jScrollPane -->
         <link type="text/css" href="./jquery.jscrollpane.css" rel="stylesheet" media="all" />     
         <!-- latest jQuery direct from google's CDN -->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-        </script>    
+        <script type="text/javascript" src="./jquery.min.js"></script>    
         <!-- the jScrollPane script -->
         <script type="text/javascript" src="./jquery.jscrollpane.min.js"></script>  
-
-        <style>
+        <script type="text/javascript" src="./mwheelIntent.js"></script>  
+        <script type="text/javascript" src="./jquery.mousewheel.js"></script>  
+        <style>  
             .ninja {
                 visibility:hidden;
                 height: 0px;
@@ -18,11 +19,17 @@
                 overflow: hidden;
                 opacity: 0;
             }
+
+            .seleccionar {
+                height: 40px;
+            }
+
             #seleccionarTipoEquipo input[type="button"] {
                 display: block;
                 width: 100%;
                 margin-bottom: 1px;
                 height: 3em;
+                font-weight: bold;
             }
 
             #seleccionarTipoEquipo {
@@ -30,7 +37,6 @@
                 overflow: auto;
             }
         </style>
-
         <script>
             $(function()
             {
@@ -38,10 +44,10 @@
             });
         </script>
     </head>
-    <body style="margin-top: 200px;">
+    <body style="margin-top: 50px;">
         <form>
             <h2>Seleccionar tipo de equipo</h2>
-<select name="fkCatalogoTipoEquipoPkCodigoOrigen" size="1" onchange="" id="fkCatalogoTipoEquipoPkCodigoOrigen" style="width:830px;font-size:190%;pointer-events: none;">
+<select disabled name="fkCatalogoTipoEquipoPkCodigoOrigen" size="1" onchange="" id="fkCatalogoTipoEquipoPkCodigoOrigen" style="width:830px;font-size:190%;pointer-events: none;">
 <option value=""></option>
 <option value="71">Aire / Agua........................................................................</option>
 <option value="47">Altavoz exterior o interior (megafonía)............................................</option>
@@ -92,7 +98,7 @@
 <option value="35">Térmico (sistema seguridad incendios)..............................................</option>
 <option value="16">Óptica.............................................................................</option>
 <option value="30">Ópticos (sistema seguridad incendios)..............................................</option></select>
-<input type="button" value="seleccionar" onclick="mostrarSeleccionTipoEquipo()"/>
+<input type="button" value="seleccionar" class="seleccionar" onclick="mostrarSeleccionTipoEquipo()"/>
 <script>
 
     function mostrarSeleccionTipoEquipo() {
@@ -103,25 +109,23 @@
         $('#seleccionarTipoEquipo').addClass('ninja');
     }
 </script>
-<div id="seleccionarTipoEquipo" class="scroll-pane ninja" style="width:100%; height: 170px;">
-<input type="button" value="-" onclick="clickTipoEquipo('');"/>
-<input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
-<input type="button" value="Óptica" onclick="clickTipoEquipo(16);"/>
-<input type="button" value="Ópticos (sistema seguridad incendios)"/>
-<input type="button" value="Aire / Agua"/>
-<input type="button" value="Aire / Agua"/>
-<input type="button" value="Ópticos (sistema seguridad incendios)"/>
-<input type="button" value="Aire / Agua"/>
-<input type="button" value="Aire / Agua"/>
-<input type="button" value="Ópticos (sistema seguridad incendios)"/>
-<input type="button" value="Aire / Agua"/>
-<input type="button" value="Aire / Agua"/>
-<input type="button" value="Ópticos (sistema seguridad incendios)"/>
-<input type="button" value="Aire / Agua"/>
-<input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
-</div>
+    <div id="seleccionarTipoEquipo" class="scroll-pane ninja" style="width:100%; height: 170px;">
+        <input type="button" value="-" onclick="clickTipoEquipo('');"/>
+        <input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
+        <input type="button" value="Óptica" onclick="clickTipoEquipo(16);"/>
+        <input type="button" value="Ópticos (sistema seguridad incendios)"  onclick="clickTipoEquipo(30);"/>
+        <input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
+        <input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
+        <input type="button" value="Ópticos (sistema seguridad incendios)"/>
+        <input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
+        <input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
+        <input type="button" value="Ópticos (sistema seguridad incendios)" onclick="clickTipoEquipo(30);"/>
+        <input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
+        <input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
+        <input type="button" value="Ópticos (sistema seguridad incendios)" onclick="clickTipoEquipo(30);"/>
+        <input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
+        <input type="button" value="Aire / Agua" onclick="clickTipoEquipo(71);"/>
+    </div>
     </form>
     </body>
 </html>
-
-

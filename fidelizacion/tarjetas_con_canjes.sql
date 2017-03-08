@@ -17,6 +17,7 @@ count(distinct cl_tarjeta) as tarjetas
 from TodosCanjesClubSmart  
 where fecha between '20160101' and '20161231'  
 and e_operacion = 'R'  and C_RESULTADO = '000'  
+and saldo_prev <> saldo_post
 group by c_venta 
 
 ) as sq1

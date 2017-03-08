@@ -27,7 +27,7 @@ GROUP BY right(comercio_com.com_id_ext,4), comercio_com.nombre,
 to_char(movimiento_mov.mov_fecha,'YYYYMMDD'), productos_bandera_pba.prg_descripcion 
 ,provincia_prov.prov_nombre, cliente_cli.cli_id_ext, 9  
 ORDER BY comercio_com.nombre, 1 DESC, productos_bandera_pba.prg_descripcion  
-AND  (movimiento_mov.mov_fecha between '2016-01-01'::date and '2017-03-02'::date)
+and  (movimiento_mov.mov_fecha between '2016-01-01'::date and '2017-03-02'::date)
 and  (movimiento_detalle_mde.mov_fecha between '2016-01-01'::date and '2017-03-02'::date)
 query.append(" and  (movimiento_mov.mov_fecha between '"+fechaI+"'::date and '"+fechaF+"'::date) ");
 query.append(" and  (movimiento_detalle_mde.mov_fecha between '"+fechaI+"'::date and '"+fechaF+"'::date) ");
