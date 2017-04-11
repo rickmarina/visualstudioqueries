@@ -1,6 +1,4 @@
 /* Informes VOC */			
-            
-            
 select top 50 cast(FechaEnvio as date) as fecha,
 count(*) as total,
 SUM(case when estado='ENVIADO' THEN 1 else 0 end) as correctos,
@@ -32,7 +30,6 @@ where 1 = 1  and TuOpinionImportaEnviosClientes.fechaEnvio >= '27-09-2016'  and 
 order by TuOpinionImportaEnviosClientes.fechaEnvio desc 
 
 /* informe trimestral por estación */
-
 
 select codigo, opcoSiteId, 'Q3' as periodo, estacion_codigo, estacion_nombre, 
 isnull(sum(case when estado = 'ENVIADO' THEN 1 end),0) as total_enviados,
