@@ -1,5 +1,6 @@
 /****** Script for SelectTopNRows command from SSMS  ******/
 
+delete from [PMTDR_V_4].[dbo].[EncuestasLCG]
 USE [PMTDR_V_4]
 GO
 INSERT INTO [dbo].[EncuestasLCG]
