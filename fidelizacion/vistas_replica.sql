@@ -15,7 +15,6 @@ FROM         dbo.TCF04 INNER JOIN
                       dbo.TCF30 ON dbo.TCF04.CL_EMPRESA = dbo.TCF30.CL_EMPRESA
 WHERE     (dbo.TCF11.CL_CA IN ('000001', '000002')) AND (dbo.TCF04.ESTADO = 1)
 ORDER BY dbo.TCF04.DESCRIPCION
-
 GO
 
 USE [CF_DISA]
@@ -35,7 +34,6 @@ FROM         dbo.TCF04 INNER JOIN
                       dbo.TCF30 ON dbo.TCF04.CL_EMPRESA = dbo.TCF30.CL_EMPRESA
 WHERE     (dbo.TCF11.CL_CA IN ('000001', '000002'))
 ORDER BY dbo.TCF04.DESCRIPCION
-
 GO
 
 USE [CF_DISA]
@@ -72,13 +70,11 @@ GO
 
 USE [CF_DISA]
 GO
-
 /****** Object:  View [dbo].[TodasTrxClubSmart_Angry]    Script Date: 27/04/2017 12:38:25 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE VIEW [dbo].[TodasTrxClubSmart_Angry]
 AS
 SELECT     C_VENTA, T_OPERACION, E_OPERACION, TCF14FI.FECHA, HORA, ID_CUENTA, CL_CLIENTE, CL_TARJETA, C_RESULTADO   , UNIDADES   , CL_REGCAL                
@@ -103,7 +99,6 @@ and T_OPERACION='M' and C_RESULTADO='000' and E_OPERACION='R'
 and CL_ARTI IN ('121','122','126','127','130','133','421','422','426','427','430','433','483')
 and CL_REGCAL NOT IN (29, 3, 817)
 and UNIDADES < 1000
-
 GO
 
 USE [CF_DISA]
@@ -583,7 +578,6 @@ FROM         dbo.TCF41
 WHERE     (LEFT(CL_TARJETA, 6) = '700421') OR
                       (LEFT(CL_TARJETA, 9) = '972400077') OR
                       (LEFT(CL_TARJETA, 6) = '700428')
-
 GO
 
 USE [CF_DISA]
@@ -662,10 +656,6 @@ FROM         dbo.TCF14FI INNER JOIN
                       dbo.TCF14FI.FECHA = dbo.TCF67.FECHA INNER JOIN
                       dbo.TCF42 ON dbo.TCF14FI.ID_CUENTA = dbo.TCF42.ID_CUENTA INNER JOIN
                       dbo.TCF41 ON dbo.TCF14FI.CL_TARJETA = dbo.TCF41.CL_TARJETA
-
-
-
-
 WHERE     (dbo.TCF14FI.C_RESULTADO = '000') AND (LEFT(dbo.TCF14FI.CL_TARJETA, 6) = '700421' OR
                       LEFT(dbo.TCF14FI.CL_TARJETA, 9) = '972400077' OR
                       LEFT(dbo.TCF14FI.CL_TARJETA, 6) = '700428') AND (dbo.TCF14FI.E_OPERACION = 'R') AND (dbo.TCF14FI.CL_EMPRESA IS NOT NULL) AND 
@@ -773,7 +763,6 @@ dbo.TCF14FI.SALDO_PREV, dbo.TCF14FI.SALDO_POST, dbo.TCF49.PUNTOS,dbo.TCF49.UNIDA
 		WHERE 
 		      (dbo.TCF11.CL_CA = '000001')   
 		      AND dbo.TCF14FI.C_RESULTADO = '000'   
-              
 		      AND (dbo.TCF14FI.T_OPERACION IN ('C','X') )  
 GO
 
@@ -824,5 +813,3 @@ SELECT [N_DOCUMENTO]
       ,[CL_REGLA_COD]
   FROM [CF_DISA_HIST].[dbo].[TUX_CHEQ_H]
 GO
-
-

@@ -2,7 +2,6 @@
 /*
  * WriteOff Detalle ClubSmart (con email sin blacklist)
  */
-
 USE CF_DISA
 
 declare @fecha as nvarchar(8)
@@ -25,9 +24,6 @@ and (Tcf41.estado in (1,2))
 -- Clientes con email
 and (tcf40.email like '%@%.%')  
 and tcf40.cl_cliente COLLATE Modern_Spanish_CI_AS not in (select cl_cliente from [Clubsmart].[dbo].listanegraemail) 
-
-
-
 
 /*
  * WriteOff Detalle ClubSmart (con movil sin blacklist)
