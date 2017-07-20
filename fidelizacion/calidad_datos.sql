@@ -13,6 +13,7 @@ FROM         TCF42 INNER JOIN
                       TCF40 ON TCF42.CL_CLIENTE = TCF40.CL_CLIENTE
 WHERE     (TCF42.TIPO_CUENTA = 'FI') 
 AND (TCF42.FECHA_ULT_OPER < @fecha or tcf42.fecha_ult_oper = '' or tcf42.fecha_ult_oper is null) 
+AND (TCF41.FECHA_ULT_OPER < @fecha or tcf41.fecha_ult_oper = '' or tcf41.fecha_ult_oper is null) 
 AND (TCF40.FECH_ALTA <= @fecha) 
 AND (LEFT(TCF41.CL_TARJETA, 6) = '700421') 
 AND (TCF41.ESTADO IN ('1', '2')) 
@@ -35,6 +36,7 @@ FROM         TCF42 INNER JOIN
                       TCF40 ON TCF42.CL_CLIENTE = TCF40.CL_CLIENTE
 WHERE     (TCF42.TIPO_CUENTA = 'FI') 
 AND (TCF42.FECHA_ULT_OPER < @fecha or tcf42.fecha_ult_oper = '' or tcf42.fecha_ult_oper is null)  
+AND (TCF41.FECHA_ULT_OPER < @fecha or tcf41.fecha_ult_oper = '' or tcf41.fecha_ult_oper is null) 
 AND (TCF40.FECH_ALTA <= @fecha) 
 AND (LEFT(TCF41.CL_TARJETA, 9) = '972400077') 
 AND (TCF41.ESTADO IN ('1', '2')) 
