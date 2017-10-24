@@ -16,6 +16,7 @@ and FECHA between '20160101' and '20161231'
 and tcf42.SALDO_PUNTOS > 0
 ) as sq1
 
+
 -- Tu Club DISA
 select count(*),
 sum(case when (2017 - sq1.anyo) < 18 then 1 else 0 end) as '-18',
@@ -33,4 +34,5 @@ tcf40.FECH_NAC is not null and tcf40.FECH_NAC <> '' and left(tcf40.fech_nac,4) <
 and FECHA between '20160101' and '20161231'
 and tcf42.SALDO_PUNTOS > 0
 ) as sq1
+
 

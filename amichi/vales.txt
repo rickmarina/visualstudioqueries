@@ -1,0 +1,29 @@
+Insertar o cancelar un vale
+
+CREAR:
+
+id_customer 
+date_from
+date_to
+priority = 1
+partial_use = 0
+quantity = 1
+quantity_per_user = 1
+free_shipping= 0
+code 
+reduction_tax= 0
+reduction_currency = 1
+reduction_amount o reduction_percent
+reduction_product = 0
+highlight = 1
+active = 1 o a 0 (si cancelación)
+gift_product = 0
+
+<name>
+    <language id="1" xlink:href="https://amichi.pleston.com/api/languages/1">
+        <![CDATA[ Amigos Amichi ]]>
+    </language>
+    <language id="3" xlink:href="https://amichi.pleston.com/api/languages/3">
+        <![CDATA[ Amigos Amichi ]]>
+    </language>
+</name>

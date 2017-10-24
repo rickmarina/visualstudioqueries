@@ -14,7 +14,7 @@ delete from [dbo].[ZZZ_TCD_SMS]
 /* eficacia email, movil scbsma */ --435
 declare @fecha as nvarchar(50)
 
-set @fecha = '20160801'
+set @fecha = '20170823'
 
 select count(*) as scs_email
 from [dbo].[ZZZ_SCS_EMAIL]
