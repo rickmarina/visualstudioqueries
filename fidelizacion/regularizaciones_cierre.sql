@@ -1,24 +1,24 @@
-select motivo, num_transacc, total_puntos 
-from (
-
-select 
-case  
-when  tcf93.observaciones in ('Regalo 200 puntos por recomendar a amigo','Regalo 50 puntos por modificar datos de la tarjeta','Regalo 50 puntos por registro de tarjeta')  
-then tcf93.observaciones else tcf93.motivo  
-end as motivo, 
-COUNT(TCF93.ID_MOV) AS NUM_TRANSACC,  
-SUM(PUNTOS) AS TOTAL_PUNTOS  
-FROM tcf93  
-where (LEFT(TCF93.FECHA, 6) = '201711')  
-GROUP BY 
-case  
-when  tcf93.observaciones in ('Regalo 200 puntos por recomendar a amigo','Regalo 50 puntos por modificar datos de la tarjeta','Regalo 50 puntos por registro de tarjeta')  
-then tcf93.observaciones else tcf93.motivo end 
-) as sq1
-where motivo not in (
-    'Agrupación de puntos',
-    'Puntos de bienvenida',
-    'PUNTOS OTORGADOS POR CABRERA',
-    'PUNTOS OTORGADOS POR CICAR',
-    'Regularización por traspaso'
-)
+query.append("select motivo, num_transacc, total_puntos  ");
+query.append("from ( ");
+query.append(" ");
+query.append("select  ");
+query.append("case   ");
+query.append("when  tcf93.observaciones in ('Regalo 200 puntos por recomendar a amigo','Regalo 50 puntos por modificar datos de la tarjeta','Regalo 50 puntos por registro de tarjeta')   ");
+query.append("then tcf93.observaciones else tcf93.motivo   ");
+query.append("end as motivo,  ");
+query.append("COUNT(TCF93.ID_MOV) AS NUM_TRANSACC,   ");
+query.append("SUM(PUNTOS) AS TOTAL_PUNTOS   ");
+query.append("FROM tcf93   ");
+query.append("where (LEFT(TCF93.FECHA, 6) = '201711')   ");
+query.append("GROUP BY  ");
+query.append("case   ");
+query.append("when  tcf93.observaciones in ('Regalo 200 puntos por recomendar a amigo','Regalo 50 puntos por modificar datos de la tarjeta','Regalo 50 puntos por registro de tarjeta')   ");
+query.append("then tcf93.observaciones else tcf93.motivo end  ");
+query.append(") as sq1 ");
+query.append("where motivo not in ( ");
+query.append("    'Agrupación de puntos', ");
+query.append("    'Puntos de bienvenida', ");
+query.append("    'PUNTOS OTORGADOS POR CABRERA', ");
+query.append("    'PUNTOS OTORGADOS POR CICAR', ");
+query.append("    'Regularización por traspaso' ");
+query.append(") ");

@@ -1,0 +1,28 @@
+SELECT dbo.TCF65.ID_MOV AS IDMOVCONT,
+		dbo.TCF65.FECHA_MOV AS FECHA, dbo.TCF65.HORA_MOV AS HORA,
+		'000' AS CODPRO, CONVERT(decimal(7, 2), CASE WHEN TCF65.TIPO_MOV = 'AC' THEN TCF66.UNIDADES * -1  ELSE TCF66.UNIDADES END, 2) AS LIT,
+		dbo.TCF14CI.CL_TARJETA AS cl_tarjeta, dbo.TCF14CI.C_VENTA AS c_venta,
+		dbo.TCF41.DATO_ADICIONAL1 AS MATRICULA, TCF40.DOCID AS NIF
+		FROM dbo.TCF65 INNER JOIN dbo.TCF14CI ON dbo.TCF65.CL_EMPRESA = dbo.TCF14CI.CL_EMPRESA AND
+		                                         dbo.TCF65.CL_CENTRO = dbo.TCF14CI.C_VENTA AND
+		                                         dbo.TCF65.CL_TPV = dbo.TCF14CI.P_VENTA AND
+		                                         dbo.TCF65.N_VENTA = dbo.TCF14CI.N_VENTA AND
+		                                         dbo.TCF65.FECHA_MOV = dbo.TCF14CI.FECHA
+		               INNER JOIN dbo.TCF66 ON dbo.TCF65.ID_MOV = dbo.TCF66.ID_MOV
+		               LEFT OUTER JOIN TCF40 ON TCF14CI.CL_CLIENTE = TCF40.CL_CLIENTE
+		               LEFT OUTER JOIN dbo.TCF41 ON dbo.TCF14CI.CL_TARJETA = dbo.TCF41.CL_TARJETA
+		WHERE (dbo.TCF14CI.C_RESULTADO = '000') AND
+		      (dbo.TCF14CI.T_OPERACION = 'C' OR dbo.TCF14CI.T_OPERACION = 'A') AND
+		      (dbo.TCF66.CL_ARTI = '1' OR dbo.TCF66.CL_ARTI = '2' OR dbo.TCF66.CL_ARTI = '8') AND
+              tcf65.fecha >= '20170727' and 
+		      (DATEDIFF(day, CONVERT(datetime, dbo.TCF65.FECHA_MOV, 112), GETDATE()) = 5) AND
+/*
+// ARREGLO EL 20161129 PARA ENVIAR SUMINISTROS ATRASADOS
+//		  (
+//		      (DATEDIFF(day, CONVERT(datetime, dbo.TCF65.FECHA_MOV, 112), GETDATE()) = 5) or
+//		      ( TCF65.FECHA_MOV in ('20161113','20161114','20161115') )");
+//		  ) and
+*/		
+		      (LEFT(dbo.TCF14CI.CL_TARJETA, 6) = '000075' OR LEFT(dbo.TCF14CI.CL_TARJETA, 6) = '000076' OR LEFT(dbo.TCF14CI.CL_TARJETA, 8) = '70052651') AND
+		      (TCF65.CL_EMPRESA <> '00000001') AND
+		      (TCF40.PROVINCIA <> 'PORTUGAL')
