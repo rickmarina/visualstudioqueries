@@ -1,0 +1,16 @@
+/* TRX Conexflow Euroshell */
+SELECT TCF65.ID_MOV AS IDMOVCONT, TCF65.FECHA_MOV AS FECHA, TCF65.HORA_MOV AS HORA, TCF66.CL_ARTI AS CODPRO, 
+CONVERT(decimal(7, 2), CASE WHEN TCF65.TIPO_MOV = 'AC' THEN TCF66.UNIDADES * -1 ELSE TCF66.UNIDADES END, 2) AS LIT, 
+TCF14CI.CL_TARJETA as cl_tarjeta, TCF14CI.C_VENTA as c_venta,
+(select top 1 cod_establ from tcf11 where tcf11.cl_empresa = tcf14ci.CL_EMPRESA and tcf11.CL_CENTRO = tcf14ci.C_VENTA collate SQL_Latin1_General_CP1_CI_AI) as codshell,
+(select top 1 acct_id from CSC.dbo.cus_cards
+	where pan_id='7002219001115880019'
+) as id_cliente
+FROM   TCF65 INNER JOIN 
+TCF14CI ON TCF65.CL_EMPRESA collate SQL_Latin1_General_CP1_CI_AI = TCF14CI.CL_EMPRESA collate SQL_Latin1_General_CP1_CI_AI AND TCF65.CL_CENTRO = TCF14CI.C_VENTA collate SQL_Latin1_General_CP1_CI_AI AND 
+TCF65.CL_TPV collate SQL_Latin1_General_CP1_CI_AI = TCF14CI.P_VENTA  collate SQL_Latin1_General_CP1_CI_AI AND TCF65.N_VENTA = TCF14CI.N_VENTA  collate SQL_Latin1_General_CP1_CI_AI AND 
+TCF65.FECHA_MOV = TCF14CI.FECHA collate SQL_Latin1_General_CP1_CI_AI INNER JOIN
+TCF66 ON TCF65.ID_MOV = TCF66.ID_MOV 
+WHERE  (TCF14CI.C_RESULTADO = '000') and e_operacion = 'R' AND 
+(TCF14CI.T_OPERACION = 'C' OR TCF14CI.T_OPERACION = 'A')
+and tcf14ci.FECHA between '20180101' and '20180105'
