@@ -1,4 +1,5 @@
---Seleccionar todas las tarjetas que han operado en el periodo de promo 20160901 a 20170108
+--Seleccionar todas las tarjetas para analizar en este informe
+--tarjetas que han operado en el periodo de promo 20160901 a 20170108 (preguntar periodo de análisis)
 delete from ZZZ_tarjetasCBS_angry
 insert into ZZZ_tarjetasCBS_angry
 select distinct cl_tarjeta
@@ -14,12 +15,12 @@ where fecha between '20160901' and '20170108'
 
 
 --periodos de análisis
-'20150501' and '20170108'
+'20160607' and '20180315'
 
-'20160901' and '20170108' as YTD
-'20160501' and '20160831' as PREVIO_YTD
-'20150901' and '20160108' as LYTD
-'20150501' and '20150831' as PREVIO_LYTD
+'20171026' and '20180315' as YTD
+'20170607' and '20171025' as PREVIO_YTD --140 days
+'20161026' and '20170315' as LYTD
+'20160607' and '20161025' as PREVIO_LYTD
 
 select ZZZ_tarjetasCBS_angry.cl_tarjeta, 
 SUM(CASE WHEN CL_REGCAL NOT IN (29, 3) THEN 1 ELSE 0 END) AS N_TRX, 
@@ -30,17 +31,17 @@ group by ZZZ_tarjetasCBS_angry.cl_tarjeta
 
 --Resultados para CBS Angry
 select ZZZ_tarjetasCBS_angry.cl_tarjeta, 
-sum(case when fecha between '20160901' and '20170108' then 1 end) as TRX_YTD,
-cast(sum(case when fecha between '20160901' and '20170108' then unidades end) as money) as VOLUMEN_YTD,
+sum(case when fecha between '20171026' and '20180315' then 1 end) as TRX_YTD,
+cast(sum(case when fecha between '20171026' and '20180315' then unidades end) as money) as VOLUMEN_YTD,
 
-isnull(sum(case when fecha between '20160501' and '20160831' then 1 end),0) as TRX_PREVIO_YTD,
-cast(isnull(sum(case when fecha between '20160501' and '20160831' then unidades end),0) as money) as VOLUMEN_PREVIO_YTD,
+isnull(sum(case when fecha between '20170607' and '20171025' then 1 end),0) as TRX_PREVIO_YTD,
+cast(isnull(sum(case when fecha between '20170607' and '20171025' then unidades end),0) as money) as VOLUMEN_PREVIO_YTD,
 
-isnull(sum(case when fecha between '20150901' and '20160108' then 1 end),0) as TRX_LYTD,
-cast(isnull(sum(case when fecha between '20150901' and '20160108' then unidades end),0) as money) as VOLUMEN_LYTD,
+isnull(sum(case when fecha between '20161026' and '20170315' then 1 end),0) as TRX_LYTD,
+cast(isnull(sum(case when fecha between '20161026' and '20170315' then unidades end),0) as money) as VOLUMEN_LYTD,
 
-isnull(sum(case when fecha between '20150501' and '20150831' then 1 end),0) as TRX_PREVIO_LYTD,
-cast(isnull(sum(case when fecha between '20150501' and '20150831' then unidades end),0) as money) as VOLUMEN_PREVIO_LYTD
+isnull(sum(case when fecha between '20160607' and '20161025' then 1 end),0) as TRX_PREVIO_LYTD,
+cast(isnull(sum(case when fecha between '20160607' and '20161025' then unidades end),0) as money) as VOLUMEN_PREVIO_LYTD
 FROM TodasTrxClubSmart_Angry 
 inner join ZZZ_tarjetasCBS_angry on ZZZ_tarjetasCBS_angry.cl_tarjeta = TodasTrxClubSmart_Angry.cl_tarjeta 
 group by ZZZ_tarjetasCBS_angry.cl_tarjeta 
@@ -50,17 +51,17 @@ group by ZZZ_tarjetasCBS_angry.cl_tarjeta
 --Resultados para TCD Angry
 
 select ZZZ_tarjetasTCD_angry.cl_tarjeta, 
-sum(case when fecha between '20160901' and '20170108' then 1 end) as TRX_YTD,
-cast(sum(case when fecha between '20160901' and '20170108' then unidades end) as money) as VOLUMEN_YTD,
+sum(case when fecha between '20171026' and '20180315' then 1 end) as TRX_YTD,
+cast(sum(case when fecha between '20171026' and '20180315' then unidades end) as money) as VOLUMEN_YTD,
 
-isnull(sum(case when fecha between '20160501' and '20160831' then 1 end),0) as TRX_PREVIO_YTD,
-cast(isnull(sum(case when fecha between '20160501' and '20160831' then unidades end),0) as money) as VOLUMEN_PREVIO_YTD,
+isnull(sum(case when fecha between '20170607' and '20171025' then 1 end),0) as TRX_PREVIO_YTD,
+cast(isnull(sum(case when fecha between '20170607' and '20171025' then unidades end),0) as money) as VOLUMEN_PREVIO_YTD,
 
-isnull(sum(case when fecha between '20150901' and '20160108' then 1 end),0) as TRX_LYTD,
-cast(isnull(sum(case when fecha between '20150901' and '20160108' then unidades end),0) as money) as VOLUMEN_LYTD,
+isnull(sum(case when fecha between '20161026' and '20170315' then 1 end),0) as TRX_LYTD,
+cast(isnull(sum(case when fecha between '20161026' and '20170315' then unidades end),0) as money) as VOLUMEN_LYTD,
 
-isnull(sum(case when fecha between '20150501' and '20150831' then 1 end),0) as TRX_PREVIO_LYTD,
-cast(isnull(sum(case when fecha between '20150501' and '20150831' then unidades end),0) as money) as VOLUMEN_PREVIO_LYTD
+isnull(sum(case when fecha between '20160607' and '20161025' then 1 end),0) as TRX_PREVIO_LYTD,
+cast(isnull(sum(case when fecha between '20160607' and '20161025' then unidades end),0) as money) as VOLUMEN_PREVIO_LYTD
 FROM TodasTrxTCD_Angry 
 inner join ZZZ_tarjetasTCD_angry on ZZZ_tarjetasTCD_angry.cl_tarjeta = TodasTrxTCD_Angry.cl_tarjeta 
 group by ZZZ_tarjetasTCD_angry.cl_tarjeta 
@@ -120,3 +121,4 @@ SELECT     C_VENTA, T_OPERACION, E_OPERACION, CF_DISA_HIST.dbo.TCF16FI_H.FECHA, 
     and T_OPERACION='M' and C_RESULTADO='000' and E_OPERACION='R'
     and CL_ARTI IN ('121','122','126','127','130','133','421','422','426','427','430','433','483')
     and CL_REGCAL NOT IN (29, 3)
+

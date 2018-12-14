@@ -20,7 +20,7 @@
 							RTRIM(LTRIM(nom2)), replace(LTRIM(str(t2,25,5)),'.00000',''), replace(LTRIM(str(f2,25,5)),'.00000',''), replace(LTRIM(str(m2,25,5)),'.00000',''), 
 							RTRIM(LTRIM(nom3)), replace(LTRIM(str(t3,25,5)),'.00000',''), replace(LTRIM(str(f3,25,5)),'.00000',''), replace(LTRIM(str(m3,25,5)),'.00000',''), 
 							RTRIM(LTRIM(nom4)), replace(LTRIM(str(t4,25,5)),'.00000',''), replace(LTRIM(str(f4,25,5)),'.00000',''), replace(LTRIM(str(m4,25,5)),'.00000','')  
-							,(SELECT pk_codigo from Estaciones where CodigoEstacion = idu and esMANDIRE=1) as estacionpk  
+							,(SELECT pk_codigo from Estaciones where CodigoEstacion = cast(idu as nvarchar(50)) and esMANDIRE=1) as estacionpk  
 				from [man_dire].[dbo].unidades  
 				inner join MAN_DIRE.dbo.tipo on unidades.idtp = tipo.idtp  
 				where tipo.dtp <> 'ESTACION'  

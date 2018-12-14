@@ -14,7 +14,7 @@ SELECT    TCF42.ID_CUENTA, TCF42.CL_CLIENTE, TCF41.CL_TARJETA, TCF42.SALDO_PUNTO
 		AND (TCF41.ESTADO in (1,2))  
 		and (tcf42.ESTADO = 1)  
         --quieran recibir notif. email
-        and TCF40.CL_CLIENTE not in  (select cl_cliente  COLLATE Modern_Spanish_CI_AS from clubsmart_v_2.dbo.listanegraemail) 
+		and tcf40.ENVIO_PUBLICIDAD not in ('1','4','5','7')
         AND LEFT(TCF41.CL_TARJETA,6) = '700421' 
         -- AND LEFT(TCF41.CL_TARJETA,9) = '972400077' 
 		AND (TCF42.ID_CUENTA NOT IN  

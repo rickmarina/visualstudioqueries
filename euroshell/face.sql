@@ -9,5 +9,9 @@ select * from cus_customer where cus_ccode = '70212000';
 --cus_ccode código sap
 where vrn2 like '%monterreina%';
 
+(select top 1 acct_id from CSC.dbo.cus_cards
+	where pan_id='7002219001115880019'
+) as id_cliente
+
 
 --código euroshell nuevo: ES000111588
